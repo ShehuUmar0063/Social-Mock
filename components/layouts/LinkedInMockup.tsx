@@ -1,6 +1,5 @@
 
 import React from 'react';
-// Added Heart to the list of icons imported from lucide-react
 import { ThumbsUp, MessageSquare, Repeat2, Send, Globe, MoreHorizontal, Plus, Heart } from 'lucide-react';
 import { PostData } from '../../types';
 
@@ -49,16 +48,18 @@ const LinkedInMockup: React.FC<{ postData: PostData }> = ({ postData }) => {
            </div>
            <span className="text-xs text-slate-400">{postData.metrics.likes}</span>
          </div>
-         <div className="text-xs text-slate-400 hover:text-blue-600 cursor-pointer">
-           {postData.metrics.comments} comments
+         <div className="text-xs text-slate-400 flex gap-2">
+           <span className="hover:text-blue-600 cursor-pointer">{postData.metrics.comments} comments</span>
+           <span>•</span>
+           <span className="hover:text-blue-600 cursor-pointer">{postData.metrics.reposts} reposts</span>
          </div>
       </div>
 
       <div className="flex justify-between items-center text-slate-500 font-semibold text-sm">
-        <div className="flex items-center gap-2 hover:bg-slate-100 p-2 rounded cursor-pointer transition-colors"><ThumbsUp size={18}/> Like</div>
-        <div className="flex items-center gap-2 hover:bg-slate-100 p-2 rounded cursor-pointer transition-colors"><MessageSquare size={18}/> Comment</div>
-        <div className="flex items-center gap-2 hover:bg-slate-100 p-2 rounded cursor-pointer transition-colors"><Repeat2 size={18}/> Repost</div>
-        <div className="flex items-center gap-2 hover:bg-slate-100 p-2 rounded cursor-pointer transition-colors"><Send size={18}/> Send</div>
+        <div className="flex items-center gap-2 hover:bg-slate-100 dark:hover:bg-zinc-800 p-2 rounded cursor-pointer transition-colors"><ThumbsUp size={18}/> Like</div>
+        <div className="flex items-center gap-2 hover:bg-slate-100 dark:hover:bg-zinc-800 p-2 rounded cursor-pointer transition-colors"><MessageSquare size={18}/> Comment</div>
+        <div className="flex items-center gap-2 hover:bg-slate-100 dark:hover:bg-zinc-800 p-2 rounded cursor-pointer transition-colors"><Repeat2 size={18}/> Repost</div>
+        <div className="flex items-center gap-2 hover:bg-slate-100 dark:hover:bg-zinc-800 p-2 rounded cursor-pointer transition-colors"><Send size={18}/> Send</div>
       </div>
     </div>
   );

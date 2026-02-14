@@ -64,7 +64,7 @@ const InstagramMockup: React.FC<{ postData: PostData }> = ({ postData }) => {
           {postData.content.timestamp}
         </div>
       </div>
-    </div >
+    </div>
   );
 };
 

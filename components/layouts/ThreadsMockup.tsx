@@ -10,7 +10,7 @@ const ThreadsMockup: React.FC<{ postData: PostData }> = ({ postData }) => {
     <div className={`w-[500px] ${isDark ? 'bg-black text-white' : 'bg-white text-black'} p-4 shadow-xl rounded-2xl`}>
       <div className="flex gap-3">
         <div className="flex flex-col items-center">
-          <img src={postData.identity.avatarUrl} className="w-10 h-10 rounded-full" alt="avatar" />
+          <img src={postData.identity.avatarUrl} className="w-10 h-10 rounded-full object-cover" alt="avatar" />
           <div className="w-[2px] flex-1 bg-zinc-800 my-2 rounded-full"></div>
           <div className="flex -space-x-2">
             <div className="w-5 h-5 rounded-full bg-blue-500 border border-black"></div>
@@ -48,6 +48,8 @@ const ThreadsMockup: React.FC<{ postData: PostData }> = ({ postData }) => {
             <span>{postData.metrics.comments} replies</span>
             <span>·</span>
             <span>{postData.metrics.likes} likes</span>
+            <span>·</span>
+            <span>{postData.metrics.reposts} reposts</span>
           </div>
         </div>
       </div>

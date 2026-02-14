@@ -45,6 +45,7 @@ const FacebookMockup: React.FC<{ postData: PostData }> = ({ postData }) => {
           </div>
           <div className="text-slate-500 text-sm flex gap-3">
             <span>{postData.metrics.comments} comments</span>
+            <span>{postData.metrics.reposts} shares</span>
           </div>
         </div>
 
