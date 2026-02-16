@@ -79,7 +79,7 @@ const Editor: React.FC<EditorProps> = ({ postData, onChange, onBack, onExport })
         </button>
       </div>
 
-      <div className="p-6 space-y-8">
+      <div className="p-6 space-y-8 flex-1">
         {/* Theme Toggle */}
         <section>
           <label className="text-xs font-bold text-slate-500 uppercase tracking-widest block mb-3">Theme</label>
@@ -273,6 +273,13 @@ const Editor: React.FC<EditorProps> = ({ postData, onChange, onBack, onExport })
             )}
           </div>
         </section>
+
+        {/* Subtle Credit */}
+        <div className="pt-12 pb-8 text-center border-t border-white/5">
+          <p className="text-[10px] text-slate-600 font-bold uppercase tracking-[0.2em]">
+            Mockup Engine by <span className="text-slate-400">Bn_Jibril</span>
+          </p>
+        </div>
       </div>
     </aside>
   );

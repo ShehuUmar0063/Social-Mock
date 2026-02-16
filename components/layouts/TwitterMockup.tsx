@@ -22,25 +22,25 @@ const TwitterMockup: React.FC<{ postData: PostData }> = ({ postData }) => {
   };
 
   return (
-    <div className={`w-[600px] flex flex-col gap-0`}>
-      <div className={`${colors.bg} ${colors.text} rounded-2xl border ${colors.border} p-4 shadow-xl z-10`}>
+    <div className="w-full max-w-[600px] flex flex-col gap-0">
+      <div className={`${colors.bg} ${colors.text} rounded-2xl border ${colors.border} p-3 md:p-4 shadow-xl z-10`}>
         {/* Header */}
         <div className="flex items-start justify-between mb-3">
           <div className="flex gap-3">
-            <img src={postData.identity.avatarUrl} className="w-12 h-12 rounded-full object-cover" alt="avatar" />
+            <img src={postData.identity.avatarUrl} className="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover" alt="avatar" />
             <div>
               <div className="flex items-center gap-1">
-                <span className="font-bold">{postData.identity.name}</span>
-                {postData.identity.verified && <BadgeCheck size={18} fill="#1d9bf0" className="text-white" />}
+                <span className="font-bold text-sm md:text-base">{postData.identity.name}</span>
+                {postData.identity.verified && <BadgeCheck size={16} fill="#1d9bf0" className="text-white" />}
               </div>
-              <span className={`${colors.secondary} text-[15px]`}>@{postData.identity.handle}</span>
+              <span className={`${colors.secondary} text-sm md:text-[15px]`}>@{postData.identity.handle}</span>
             </div>
           </div>
-          <MoreHorizontal className={colors.secondary} size={20} />
+          <MoreHorizontal className={colors.secondary} size={18} />
         </div>
 
         {/* Content */}
-        <div className="text-[17px] leading-relaxed mb-3 whitespace-pre-wrap">
+        <div className="text-[15px] md:text-[17px] leading-relaxed mb-3 whitespace-pre-wrap">
           {formatText(postData.content.text)}
         </div>
 
@@ -64,63 +64,63 @@ const TwitterMockup: React.FC<{ postData: PostData }> = ({ postData }) => {
                 </div>
               </div>
             ))}
-            <div className={`${colors.secondary} text-sm`}>1,424 votes · Final results</div>
+            <div className={`${colors.secondary} text-xs md:text-sm`}>1,424 votes · Final results</div>
           </div>
         )}
 
         {/* Timestamp */}
-        <div className={`${colors.secondary} text-[15px] pb-4 border-b ${colors.border} mb-4`}>
+        <div className={`${colors.secondary} text-xs md:text-[15px] pb-4 border-b ${colors.border} mb-4`}>
           {postData.content.timestamp}
         </div>
 
         {/* Metrics Bar */}
-        <div className={`flex justify-between items-center ${colors.secondary} px-1`}>
-          <div className="flex items-center gap-2 hover:text-[#1d9bf0] transition-colors cursor-pointer group">
-            <div className="p-2 group-hover:bg-[#1d9bf0]/10 rounded-full"><MessageCircle size={18} /></div>
-            <span className="text-xs">{postData.metrics.comments}</span>
+        <div className={`flex justify-between items-center ${colors.secondary} px-1 overflow-x-auto no-scrollbar`}>
+          <div className="flex items-center gap-1 hover:text-[#1d9bf0] transition-colors cursor-pointer group">
+            <div className="p-1.5 md:p-2 group-hover:bg-[#1d9bf0]/10 rounded-full"><MessageCircle size={16} md:size={18} /></div>
+            <span className="text-[10px] md:text-xs">{postData.metrics.comments}</span>
           </div>
-          <div className="flex items-center gap-2 hover:text-[#00ba7c] transition-colors cursor-pointer group">
-            <div className="p-2 group-hover:bg-[#00ba7c]/10 rounded-full"><Repeat2 size={18} /></div>
-            <span className="text-xs">{postData.metrics.reposts}</span>
+          <div className="flex items-center gap-1 hover:text-[#00ba7c] transition-colors cursor-pointer group">
+            <div className="p-1.5 md:p-2 group-hover:bg-[#00ba7c]/10 rounded-full"><Repeat2 size={16} md:size={18} /></div>
+            <span className="text-[10px] md:text-xs">{postData.metrics.reposts}</span>
           </div>
-          <div className="flex items-center gap-2 hover:text-[#f91880] transition-colors cursor-pointer group">
-            <div className="p-2 group-hover:bg-[#f91880]/10 rounded-full"><Heart size={18} /></div>
-            <span className="text-xs">{postData.metrics.likes}</span>
+          <div className="flex items-center gap-1 hover:text-[#f91880] transition-colors cursor-pointer group">
+            <div className="p-1.5 md:p-2 group-hover:bg-[#f91880]/10 rounded-full"><Heart size={16} md:size={18} /></div>
+            <span className="text-[10px] md:text-xs">{postData.metrics.likes}</span>
           </div>
-          <div className="flex items-center gap-2 hover:text-[#1d9bf0] transition-colors cursor-pointer group">
-            <div className="p-2 group-hover:bg-[#1d9bf0]/10 rounded-full"><BarChart2 size={18} /></div>
-            <span className="text-xs">{postData.metrics.views}</span>
+          <div className="flex items-center gap-1 hover:text-[#1d9bf0] transition-colors cursor-pointer group">
+            <div className="p-1.5 md:p-2 group-hover:bg-[#1d9bf0]/10 rounded-full"><BarChart2 size={16} md:size={18} /></div>
+            <span className="text-[10px] md:text-xs">{postData.metrics.views}</span>
           </div>
-          <div className="flex items-center gap-2 hover:text-[#1d9bf0] transition-colors cursor-pointer group">
-            <div className="p-2 group-hover:bg-[#1d9bf0]/10 rounded-full"><Share size={18} /></div>
+          <div className="flex items-center gap-1 hover:text-[#1d9bf0] transition-colors cursor-pointer group">
+            <div className="p-1.5 md:p-2 group-hover:bg-[#1d9bf0]/10 rounded-full"><Share size={16} md:size={18} /></div>
           </div>
         </div>
       </div>
 
       {/* Replies */}
       {postData.content.showComments && postData.content.comments.length > 0 && (
-        <div className={`${colors.bg} ${colors.text} rounded-b-2xl border-x border-b ${colors.border} -mt-3 pt-6 p-4 space-y-4`}>
+        <div className={`${colors.bg} ${colors.text} rounded-b-2xl border-x border-b ${colors.border} -mt-3 pt-6 p-3 md:p-4 space-y-4`}>
           {postData.content.comments.map((comment) => (
             <div key={comment.id} className="flex gap-3">
               <div className="flex flex-col items-center">
-                <img src={comment.avatarUrl} className="w-10 h-10 rounded-full object-cover" alt="avatar" />
+                <img src={comment.avatarUrl} className="w-8 h-8 md:w-10 md:h-10 rounded-full object-cover" alt="avatar" />
               </div>
               <div className="flex-1">
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-1">
-                    <span className="font-bold text-[15px]">{comment.name}</span>
-                    <span className={`${colors.secondary} text-[14px]`}>@{comment.handle} · {comment.timestamp}</span>
+                  <div className="flex flex-wrap items-center gap-x-1">
+                    <span className="font-bold text-sm md:text-[15px]">{comment.name}</span>
+                    <span className={`${colors.secondary} text-xs md:text-[14px]`}>@{comment.handle} · {comment.timestamp}</span>
                   </div>
-                  <MoreHorizontal className={colors.secondary} size={16} />
+                  <MoreHorizontal className={colors.secondary} size={14} md:size={16} />
                 </div>
-                <div className="text-[15px] leading-relaxed mb-2">
+                <div className="text-sm md:text-[15px] leading-relaxed mb-2">
                   {formatText(comment.text)}
                 </div>
-                <div className={`${colors.secondary} flex gap-6`}>
-                  <div className="flex items-center gap-1.5"><MessageCircle size={16} /><span className="text-xs">0</span></div>
-                  <div className="flex items-center gap-1.5"><Repeat2 size={16} /><span className="text-xs">0</span></div>
-                  <div className="flex items-center gap-1.5"><Heart size={16} /><span className="text-xs">{comment.likes}</span></div>
-                  <div className="flex items-center gap-1.5"><BarChart2 size={16} /></div>
+                <div className={`${colors.secondary} flex gap-4 md:gap-6 overflow-x-auto no-scrollbar`}>
+                  <div className="flex items-center gap-1"><MessageCircle size={14} md:size={16} /><span className="text-[10px] md:text-xs">0</span></div>
+                  <div className="flex items-center gap-1"><Repeat2 size={14} md:size={16} /><span className="text-[10px] md:text-xs">0</span></div>
+                  <div className="flex items-center gap-1"><Heart size={14} md:size={16} /><span className="text-[10px] md:text-xs">{comment.likes}</span></div>
+                  <div className="flex items-center gap-1"><BarChart2 size={14} md:size={16} /></div>
                 </div>
               </div>
             </div>

@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { PostData } from '../types';
 import TwitterMockup from './layouts/TwitterMockup';
 import InstagramMockup from './layouts/InstagramMockup';
@@ -16,25 +16,41 @@ interface PreviewProps {
 }
 
 const Preview: React.FC<PreviewProps> = ({ postData }) => {
-  const renderMockup = () => {
+  const MockupComponent = useMemo(() => {
     switch (postData.platform) {
-      case 'twitter': return <TwitterMockup postData={postData} />;
-      case 'instagram': return <InstagramMockup postData={postData} />;
-      case 'linkedin': return <LinkedInMockup postData={postData} />;
-      case 'facebook': return <FacebookMockup postData={postData} />;
-      case 'whatsapp': return <WhatsAppMockup postData={postData} />;
-      case 'threads': return <ThreadsMockup postData={postData} />;
-      case 'telegram': return <TelegramMockup postData={postData} />;
-      case 'pinterest': return <PinterestMockup postData={postData} />;
-      case 'snapchat': return <SnapchatMockup postData={postData} />;
+      case 'twitter': return TwitterMockup;
+      case 'instagram': return InstagramMockup;
+      case 'linkedin': return LinkedInMockup;
+      case 'facebook': return FacebookMockup;
+      case 'whatsapp': return WhatsAppMockup;
+      case 'threads': return ThreadsMockup;
+      case 'telegram': return TelegramMockup;
+      case 'pinterest': return PinterestMockup;
+      case 'snapchat': return SnapchatMockup;
       default: return null;
     }
-  };
+  }, [postData.platform]);
 
   return (
-    <main className="flex-1 bg-[#1e293b] flex items-center justify-center p-8 overflow-y-auto">
-      <div id="preview-card-container" className="p-10">
-        {renderMockup()}
+    <main className="flex-1 bg-slate-900/50 flex flex-col items-center justify-center p-4 md:p-8 overflow-y-auto custom-scrollbar">
+      {/* Container with auto-scaling for mobile */}
+      <div className="w-full h-full flex items-center justify-center">
+        <div 
+          id="preview-card-container" 
+          className="relative origin-center transition-transform duration-300 flex items-center justify-center p-4 md:p-10"
+          style={{
+            // CSS Hack to ensure the content stays centered and fits within the parent bounds
+            maxWidth: '100%',
+            maxHeight: '100%'
+          }}
+        >
+          {MockupComponent && <MockupComponent postData={postData} />}
+        </div>
+      </div>
+      
+      {/* Mobile Hint */}
+      <div className="md:hidden mt-4 text-[10px] text-slate-500 font-medium uppercase tracking-widest opacity-50">
+        Live High-Fidelity Preview
       </div>
     </main>
   );

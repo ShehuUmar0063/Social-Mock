@@ -13,8 +13,8 @@ const Landing: React.FC<LandingProps> = ({ onStart }) => {
       <div className="absolute top-1/4 -left-20 w-72 h-72 bg-blue-500/20 rounded-full blur-[120px] animate-pulse"></div>
       <div className="absolute bottom-1/4 -right-20 w-72 h-72 bg-purple-500/20 rounded-full blur-[120px] animate-pulse delay-700"></div>
 
-      <div className="z-10 text-center max-w-3xl">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-blue-400 text-sm font-medium mb-8 animate-bounce">
+      <div className="z-10 text-center max-w-3xl flex-1 flex flex-col justify-center">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-blue-400 text-sm font-medium mb-8 animate-bounce mx-auto">
           <Sparkles size={14} />
           <span>New: Threads & Snapchat support added</span>
         </div>
@@ -37,7 +37,7 @@ const Landing: React.FC<LandingProps> = ({ onStart }) => {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left mb-12">
           <Feature 
             icon={<Layout className="text-blue-400" />} 
             title="9+ Platforms" 
@@ -54,6 +54,13 @@ const Landing: React.FC<LandingProps> = ({ onStart }) => {
             desc="All processing happens in your browser. Your data never leaves your device."
           />
         </div>
+      </div>
+
+      {/* Footer Credit */}
+      <div className="z-10 py-8 text-center">
+        <p className="text-slate-500 text-sm font-medium tracking-widest uppercase">
+          Developed by <span className="text-blue-500 font-bold">Bn_Jibril</span>
+        </p>
       </div>
 
       {/* Floating Demo Preview */}

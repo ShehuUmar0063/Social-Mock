@@ -9,8 +9,8 @@ interface PlatformSelectorProps {
 
 const PlatformSelector: React.FC<PlatformSelectorProps> = ({ onSelect }) => {
   return (
-    <div className="min-h-screen py-20 px-6">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen py-20 px-6 flex flex-col">
+      <div className="max-w-4xl mx-auto flex-1">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-4">Choose a Platform</h2>
           <p className="text-slate-400">Select the social network you want to create a mockup for.</p>
@@ -37,6 +37,12 @@ const PlatformSelector: React.FC<PlatformSelectorProps> = ({ onSelect }) => {
             </button>
           ))}
         </div>
+      </div>
+
+      <div className="mt-12 text-center pb-8">
+        <p className="text-slate-600 text-xs font-bold uppercase tracking-widest">
+          Created with ♥ by <span className="text-slate-400">Bn_Jibril</span>
+        </p>
       </div>
     </div>
   );

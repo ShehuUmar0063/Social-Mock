@@ -7,7 +7,7 @@ const InstagramMockup: React.FC<{ postData: PostData }> = ({ postData }) => {
   const isDark = postData.theme !== 'light';
   
   return (
-    <div className={`w-[450px] ${isDark ? 'bg-black text-white border-zinc-800' : 'bg-white text-slate-900 border-slate-200'} rounded-md border shadow-2xl overflow-hidden`}>
+    <div className={`w-full max-w-[450px] ${isDark ? 'bg-black text-white border-zinc-800' : 'bg-white text-slate-900 border-slate-200'} rounded-md border shadow-2xl overflow-hidden`}>
       {/* Header */}
       <div className="flex items-center justify-between p-3">
         <div className="flex items-center gap-2">
