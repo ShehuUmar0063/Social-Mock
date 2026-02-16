@@ -8,18 +8,18 @@ interface LandingProps {
 
 const Landing: React.FC<LandingProps> = ({ onStart }) => {
   return (
-    <div className="relative min-h-screen flex flex-col items-center justify-center p-6 overflow-hidden">
+    <div className="relative min-h-screen flex flex-col items-center justify-center p-6">
       {/* Animated Blobs */}
       <div className="absolute top-1/4 -left-20 w-72 h-72 bg-blue-500/20 rounded-full blur-[120px] animate-pulse"></div>
       <div className="absolute bottom-1/4 -right-20 w-72 h-72 bg-purple-500/20 rounded-full blur-[120px] animate-pulse delay-700"></div>
 
-      <div className="z-10 text-center max-w-3xl flex-1 flex flex-col justify-center">
+      <div className="z-10 text-center max-w-3xl flex-1 flex flex-col justify-center py-12 md:py-20">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-blue-400 text-sm font-medium mb-8 animate-bounce mx-auto">
           <Sparkles size={14} />
           <span>New: Threads & Snapchat support added</span>
         </div>
 
-        <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight bg-gradient-to-br from-white to-white/60 bg-clip-text text-transparent">
+        <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight bg-gradient-to-br from-white to-white/60 bg-clip-text text-transparent leading-tight">
           Create Stunning Social Media <span className="text-blue-500">Mockups</span>
         </h1>
         
@@ -57,7 +57,7 @@ const Landing: React.FC<LandingProps> = ({ onStart }) => {
       </div>
 
       {/* Footer Credit */}
-      <div className="z-10 py-8 text-center">
+      <div className="z-10 py-12 text-center mt-auto">
         <p className="text-slate-500 text-sm font-medium tracking-widest uppercase">
           Developed by <span className="text-blue-500 font-bold">Bn_Jibril</span>
         </p>
