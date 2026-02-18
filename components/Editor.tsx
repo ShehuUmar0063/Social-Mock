@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { ArrowLeft, Download, User, Type, BarChart2, Hash, Moon, Sun, Monitor, Camera, Plus, Trash2, MessageSquare } from 'lucide-react';
+import { ArrowLeft, Download, User, Type, BarChart2, Hash, Moon, Sun, Monitor, Camera, Plus, Trash2, MessageSquare, Image as ImageIcon } from 'lucide-react';
 import { PostData, AppTheme, CommentData } from '../types';
 import { PLATFORMS } from '../constants';
 
@@ -37,7 +37,7 @@ const Editor: React.FC<EditorProps> = ({ postData, onChange, onBack, onExport })
       id: Date.now().toString(),
       name: 'User Name',
       handle: 'username',
-      avatarUrl: `https://i.pravatar.cc/150?u=${Date.now()}`,
+      avatarUrl: '', // No default image
       text: 'Sample comment text...',
       timestamp: '1m',
       likes: '0'
@@ -106,7 +106,13 @@ const Editor: React.FC<EditorProps> = ({ postData, onChange, onBack, onExport })
           <div className="space-y-4">
             <div className="flex items-center gap-4 p-4 bg-slate-800/50 rounded-xl border border-white/5">
               <div className="relative group w-12 h-12">
-                <img src={postData.identity.avatarUrl} className="w-full h-full rounded-full object-cover" alt="Avatar" />
+                {postData.identity.avatarUrl ? (
+                  <img src={postData.identity.avatarUrl} className="w-full h-full rounded-full object-cover" alt="Avatar" />
+                ) : (
+                  <div className="w-full h-full rounded-full bg-slate-700 flex items-center justify-center border border-white/10">
+                    <User size={20} className="text-slate-500" />
+                  </div>
+                )}
                 <label className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center rounded-full cursor-pointer transition-opacity">
                   <Camera size={16} className="text-white" />
                   <input type="file" className="hidden" accept="image/*" onChange={(e) => handleFileUpload(e, 'avatar')} />
@@ -158,7 +164,14 @@ const Editor: React.FC<EditorProps> = ({ postData, onChange, onBack, onExport })
             />
             {postData.content.contentType === 'image' && (
               <div className="relative group aspect-video bg-slate-800 rounded-xl border-2 border-dashed border-white/10 flex flex-col items-center justify-center overflow-hidden">
-                <img src={postData.content.imageUrl} className="w-full h-full object-cover" />
+                {postData.content.imageUrl ? (
+                  <img src={postData.content.imageUrl} className="w-full h-full object-cover" />
+                ) : (
+                  <div className="flex flex-col items-center gap-2 text-slate-500">
+                    <ImageIcon size={32} />
+                    <span className="text-xs font-bold uppercase tracking-wider">Click to Upload Image</span>
+                  </div>
+                )}
                 <label className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex flex-col items-center justify-center cursor-pointer transition-opacity">
                   <Camera size={24} className="text-white mb-2" />
                   <input type="file" className="hidden" accept="image/*" onChange={(e) => handleFileUpload(e, 'post')} />
@@ -200,7 +213,13 @@ const Editor: React.FC<EditorProps> = ({ postData, onChange, onBack, onExport })
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <div className="relative group w-8 h-8">
-                        <img src={comment.avatarUrl} className="w-full h-full rounded-full object-cover" />
+                        {comment.avatarUrl ? (
+                          <img src={comment.avatarUrl} className="w-full h-full rounded-full object-cover" />
+                        ) : (
+                          <div className="w-full h-full rounded-full bg-slate-700 flex items-center justify-center">
+                            <User size={12} className="text-slate-500" />
+                          </div>
+                        )}
                         <label className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center rounded-full cursor-pointer transition-opacity">
                           <Camera size={12} className="text-white" />
                           <input type="file" className="hidden" accept="image/*" onChange={(e) => handleFileUpload(e, 'comment', comment.id)} />

@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Heart, MessageCircle, Send, Bookmark, MoreHorizontal } from 'lucide-react';
+import { Heart, MessageCircle, Send, Bookmark, MoreHorizontal, User, Image as ImageIcon } from 'lucide-react';
 import { PostData } from '../../types';
 
 const InstagramMockup: React.FC<{ postData: PostData }> = ({ postData }) => {
@@ -12,12 +12,18 @@ const InstagramMockup: React.FC<{ postData: PostData }> = ({ postData }) => {
       <div className="flex items-center justify-between p-3">
         <div className="flex items-center gap-2">
           <div className="p-[2px] rounded-full bg-gradient-to-tr from-yellow-400 to-purple-600">
-             <img 
-               crossOrigin="anonymous" 
-               src={postData.identity.avatarUrl} 
-               className={`w-8 h-8 rounded-full border-2 ${isDark ? 'border-black' : 'border-white'} object-cover`} 
-               alt="avatar" 
-             />
+             {postData.identity.avatarUrl ? (
+               <img 
+                 crossOrigin="anonymous" 
+                 src={postData.identity.avatarUrl} 
+                 className={`w-8 h-8 rounded-full border-2 ${isDark ? 'border-black' : 'border-white'} object-cover`} 
+                 alt="avatar" 
+               />
+             ) : (
+               <div className={`w-8 h-8 rounded-full border-2 ${isDark ? 'border-black' : 'border-white'} bg-slate-200 dark:bg-slate-800 flex items-center justify-center`}>
+                 <User size={14} className="text-slate-400" />
+               </div>
+             )}
           </div>
           <span className="text-sm font-bold">{postData.identity.handle}</span>
         </div>
@@ -25,13 +31,20 @@ const InstagramMockup: React.FC<{ postData: PostData }> = ({ postData }) => {
       </div>
 
       {/* Image Stage */}
-      <div className="aspect-square bg-slate-100">
-        <img 
-          crossOrigin="anonymous" 
-          src={postData.content.imageUrl} 
-          className="w-full h-full object-cover" 
-          alt="content" 
-        />
+      <div className="aspect-square bg-slate-100 dark:bg-slate-900 flex items-center justify-center">
+        {postData.content.imageUrl ? (
+          <img 
+            crossOrigin="anonymous" 
+            src={postData.content.imageUrl} 
+            className="w-full h-full object-cover" 
+            alt="content" 
+          />
+        ) : (
+          <div className="flex flex-col items-center gap-2 text-slate-400">
+            <ImageIcon size={48} />
+            <span className="text-sm font-medium">Upload Image</span>
+          </div>
+        )}
       </div>
 
       {/* Interactions */}

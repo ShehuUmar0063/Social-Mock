@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { ThumbsUp, MessageSquare, Repeat2, Send, Globe, MoreHorizontal, Plus, Heart } from 'lucide-react';
+import { ThumbsUp, MessageSquare, Repeat2, Send, Globe, MoreHorizontal, Plus, Heart, User, Image as ImageIcon } from 'lucide-react';
 import { PostData } from '../../types';
 
 const LinkedInMockup: React.FC<{ postData: PostData }> = ({ postData }) => {
@@ -10,12 +10,18 @@ const LinkedInMockup: React.FC<{ postData: PostData }> = ({ postData }) => {
     <div className={`w-full max-w-[550px] ${isDark ? 'bg-[#1b1f23] text-white border-zinc-800' : 'bg-white text-slate-900 border-slate-200'} rounded-lg border shadow-2xl p-3 md:p-4`}>
       <div className="flex items-start justify-between mb-4">
         <div className="flex gap-2">
-          <img 
-            crossOrigin="anonymous" 
-            src={postData.identity.avatarUrl} 
-            className="w-10 h-10 md:w-12 md:h-12 rounded-sm object-cover" 
-            alt="avatar" 
-          />
+          {postData.identity.avatarUrl ? (
+            <img 
+              crossOrigin="anonymous" 
+              src={postData.identity.avatarUrl} 
+              className="w-10 h-10 md:w-12 md:h-12 rounded-sm object-cover" 
+              alt="avatar" 
+            />
+          ) : (
+            <div className="w-10 h-10 md:w-12 md:h-12 rounded-sm bg-slate-200 dark:bg-slate-800 flex items-center justify-center">
+              <User size={20} className="text-slate-400" />
+            </div>
+          )}
           <div className="flex flex-col min-w-0">
             <div className="flex items-center gap-1">
               <span className="font-bold text-sm md:text-base hover:text-blue-600 hover:underline cursor-pointer truncate">{postData.identity.name}</span>
@@ -40,13 +46,20 @@ const LinkedInMockup: React.FC<{ postData: PostData }> = ({ postData }) => {
       </div>
 
       {postData.content.contentType === 'image' && (
-        <div className="mb-4">
-          <img 
-            crossOrigin="anonymous" 
-            src={postData.content.imageUrl} 
-            className="w-full h-auto rounded" 
-            alt="post" 
-          />
+        <div className="mb-4 bg-slate-100 dark:bg-slate-900 min-h-[200px] flex items-center justify-center rounded overflow-hidden">
+          {postData.content.imageUrl ? (
+            <img 
+              crossOrigin="anonymous" 
+              src={postData.content.imageUrl} 
+              className="w-full h-auto rounded" 
+              alt="post" 
+            />
+          ) : (
+            <div className="flex flex-col items-center gap-1 text-slate-400">
+              <ImageIcon size={32} />
+              <span className="text-xs font-medium">Upload Post Image</span>
+            </div>
+          )}
         </div>
       )}
 

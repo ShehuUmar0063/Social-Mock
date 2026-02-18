@@ -19,48 +19,29 @@ export const INITIAL_POST_DATA: PostData = {
   platform: 'twitter',
   theme: 'light',
   identity: {
-    name: 'SocialMock AI',
-    handle: 'socialmock_app',
-    title: 'Senior Product Designer',
-    avatarUrl: 'https://picsum.photos/seed/avatar/200',
+    name: 'User Name',
+    handle: 'handle',
+    title: 'Professional Title',
+    avatarUrl: '', // Removed default image
     verified: true,
   },
   content: {
-    text: 'Check out this amazing mockup generator! 🚀 Build professional social media posts in seconds without touching Figma. #Design #Mockup #SocialMedia',
-    imageUrl: 'https://picsum.photos/seed/post/800/600',
+    text: 'Type your post content here...',
+    imageUrl: '', // Removed default image
     contentType: 'image',
     pollOptions: [
-      { id: '1', text: 'I love it!', percentage: 85 },
-      { id: '2', text: 'Its okay', percentage: 15 },
+      { id: '1', text: 'Option 1', percentage: 50 },
+      { id: '2', text: 'Option 2', percentage: 50 },
     ],
     timestamp: '10:42 AM · Oct 24, 2024',
     showComments: true,
-    comments: [
-      {
-        id: 'c1',
-        name: 'Alex River',
-        handle: 'ariver_ux',
-        avatarUrl: 'https://i.pravatar.cc/150?u=alex',
-        text: 'This is a game changer for my client presentations! 🔥',
-        timestamp: '2h',
-        likes: '12'
-      },
-      {
-        id: 'c2',
-        name: 'Sarah Chen',
-        handle: 'schen_dev',
-        avatarUrl: 'https://i.pravatar.cc/150?u=sarah',
-        text: 'Finally, a fast way to mock up LinkedIn posts without the hassle.',
-        timestamp: '45m',
-        likes: '5'
-      }
-    ]
+    comments: [] // Start with no comments
   },
   metrics: {
-    likes: '12.4K',
-    comments: '452',
-    reposts: '1.2K',
-    views: '142K',
+    likes: '0',
+    comments: '0',
+    reposts: '0',
+    views: '0',
   },
 };
 

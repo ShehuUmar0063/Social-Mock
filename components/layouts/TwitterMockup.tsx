@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { MessageCircle, Repeat2, Heart, BarChart2, Share, BadgeCheck, MoreHorizontal } from 'lucide-react';
+import { MessageCircle, Repeat2, Heart, BarChart2, Share, BadgeCheck, MoreHorizontal, User } from 'lucide-react';
 import { PostData } from '../../types';
 
 const TwitterMockup: React.FC<{ postData: PostData }> = ({ postData }) => {
@@ -27,12 +27,18 @@ const TwitterMockup: React.FC<{ postData: PostData }> = ({ postData }) => {
         {/* Header */}
         <div className="flex items-start justify-between mb-3">
           <div className="flex gap-3">
-            <img 
-              crossOrigin="anonymous" 
-              src={postData.identity.avatarUrl} 
-              className="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover" 
-              alt="avatar" 
-            />
+            {postData.identity.avatarUrl ? (
+              <img 
+                crossOrigin="anonymous" 
+                src={postData.identity.avatarUrl} 
+                className="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover" 
+                alt="avatar" 
+              />
+            ) : (
+              <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center">
+                <User size={20} className="text-slate-400" />
+              </div>
+            )}
             <div>
               <div className="flex items-center gap-1">
                 <span className="font-bold text-sm md:text-base">{postData.identity.name}</span>
@@ -50,13 +56,17 @@ const TwitterMockup: React.FC<{ postData: PostData }> = ({ postData }) => {
         </div>
 
         {postData.content.contentType === 'image' && (
-          <div className={`rounded-2xl border ${colors.border} overflow-hidden mb-3`}>
-            <img 
-              crossOrigin="anonymous" 
-              src={postData.content.imageUrl} 
-              className="w-full h-auto max-h-[500px] object-cover" 
-              alt="content" 
-            />
+          <div className={`rounded-2xl border ${colors.border} overflow-hidden mb-3 bg-slate-100 dark:bg-slate-900 min-h-[200px] flex items-center justify-center`}>
+            {postData.content.imageUrl ? (
+              <img 
+                crossOrigin="anonymous" 
+                src={postData.content.imageUrl} 
+                className="w-full h-auto max-h-[500px] object-cover" 
+                alt="content" 
+              />
+            ) : (
+              <span className="text-slate-400 text-sm font-medium">No image uploaded</span>
+            )}
           </div>
         )}
 
@@ -113,12 +123,18 @@ const TwitterMockup: React.FC<{ postData: PostData }> = ({ postData }) => {
           {postData.content.comments.map((comment) => (
             <div key={comment.id} className="flex gap-3">
               <div className="flex flex-col items-center">
-                <img 
-                  crossOrigin="anonymous" 
-                  src={comment.avatarUrl} 
-                  className="w-8 h-8 md:w-10 md:h-10 rounded-full object-cover" 
-                  alt="avatar" 
-                />
+                {comment.avatarUrl ? (
+                  <img 
+                    crossOrigin="anonymous" 
+                    src={comment.avatarUrl} 
+                    className="w-8 h-8 md:w-10 md:h-10 rounded-full object-cover" 
+                    alt="avatar" 
+                  />
+                ) : (
+                  <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center">
+                    <User size={14} className="text-slate-400" />
+                  </div>
+                )}
               </div>
               <div className="flex-1">
                 <div className="flex items-center justify-between">
