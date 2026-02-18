@@ -32,21 +32,28 @@ const App: React.FC = () => {
     if (!element) return;
 
     try {
+      // Small delay to ensure all DOM updates and styles are applied
+      await new Promise(resolve => setTimeout(resolve, 100));
+
       // @ts-ignore (html2canvas is loaded via CDN)
       const canvas = await window.html2canvas(element, {
-        scale: 3,
-        useCORS: true,
+        scale: 3, // High resolution
+        useCORS: true, // Crucial for external images
+        allowTaint: false, // Prevents tainted canvas if CORS is set up
         backgroundColor: null,
         logging: false,
+        imageTimeout: 15000, // Wait for images
+        removeContainer: true,
       });
+
       const dataUrl = canvas.toDataURL('image/png');
       const link = document.createElement('a');
       link.download = `socialmock-${postData.platform}-${Date.now()}.png`;
       link.href = dataUrl;
       link.click();
     } catch (err) {
-      console.error("Export failed", err);
-      alert("Failed to export image. Check console for details.");
+      console.error("Export failed:", err);
+      alert("Export failed. This is likely due to image security (CORS). Try uploading a local image instead of using the default one.");
     }
   };
 

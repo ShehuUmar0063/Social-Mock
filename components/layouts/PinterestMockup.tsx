@@ -9,9 +9,14 @@ const PinterestMockup: React.FC<{ postData: PostData }> = ({ postData }) => {
   return (
     <div className={`w-full max-w-[300px] ${isDark ? 'bg-[#111]' : 'bg-white'} rounded-3xl shadow-xl overflow-hidden group border ${isDark ? 'border-zinc-800' : 'border-slate-100'}`}>
       <div className="relative overflow-hidden">
-        <img src={postData.content.imageUrl} className="w-full h-auto object-cover" alt="pin" />
+        <img 
+          crossOrigin="anonymous" 
+          src={postData.content.imageUrl} 
+          className="w-full h-auto object-cover" 
+          alt="pin" 
+        />
         
-        {/* Hover Overlay - hidden on touch if needed, but keeping for fidelity */}
+        {/* Hover Overlay */}
         <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity p-3 md:p-4 flex flex-col justify-between">
           <div className="flex justify-between items-center">
              <div className="bg-white/10 backdrop-blur text-white px-3 py-1 rounded-full text-xs font-bold">Mockup</div>
@@ -29,7 +34,12 @@ const PinterestMockup: React.FC<{ postData: PostData }> = ({ postData }) => {
           {postData.content.text}
         </div>
         <div className="flex items-center gap-2">
-           <img src={postData.identity.avatarUrl} className="w-7 h-7 md:w-8 md:h-8 rounded-full object-cover" alt="profile" />
+           <img 
+             crossOrigin="anonymous" 
+             src={postData.identity.avatarUrl} 
+             className="w-7 h-7 md:w-8 md:h-8 rounded-full object-cover" 
+             alt="profile" 
+           />
            <span className={`text-xs md:text-sm font-medium truncate ${isDark ? 'text-slate-400' : 'text-slate-700'}`}>{postData.identity.name}</span>
         </div>
       </div>

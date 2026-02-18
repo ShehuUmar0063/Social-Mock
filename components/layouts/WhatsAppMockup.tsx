@@ -13,7 +13,12 @@ const WhatsAppMockup: React.FC<{ postData: PostData }> = ({ postData }) => {
 
       {/* Header */}
       <div className="h-14 bg-[#075e54] dark:bg-[#202c33] flex items-center gap-3 px-3 relative z-10 shrink-0">
-        <img src={postData.identity.avatarUrl} className="w-9 h-9 md:w-10 md:h-10 rounded-full object-cover" alt="avatar" />
+        <img 
+          crossOrigin="anonymous" 
+          src={postData.identity.avatarUrl} 
+          className="w-9 h-9 md:w-10 md:h-10 rounded-full object-cover" 
+          alt="avatar" 
+        />
         <div className="flex-1 min-w-0">
           <div className="text-white font-bold leading-tight truncate">{postData.identity.name}</div>
           <div className="text-white/70 text-[10px] md:text-xs">online</div>
@@ -24,7 +29,12 @@ const WhatsAppMockup: React.FC<{ postData: PostData }> = ({ postData }) => {
       <div className="flex-1 p-3 md:p-4 flex flex-col gap-4 relative z-10 overflow-y-auto custom-scrollbar">
         <div className={`self-end max-w-[85%] ${isDark ? 'bg-[#005c4b]' : 'bg-[#dcf8c6]'} rounded-lg p-2 shadow-sm relative`}>
           {postData.content.contentType === 'image' && (
-            <img src={postData.content.imageUrl} className="rounded mb-2 w-full h-auto" alt="shared" />
+            <img 
+              crossOrigin="anonymous" 
+              src={postData.content.imageUrl} 
+              className="rounded mb-2 w-full h-auto" 
+              alt="shared" 
+            />
           )}
           <div className="text-sm pr-12 whitespace-pre-wrap leading-tight text-slate-800 dark:text-slate-100">
             {postData.content.text}

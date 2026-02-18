@@ -6,14 +6,24 @@ import { Camera, Send, MessageSquare, Heart, Download } from 'lucide-react';
 const SnapchatMockup: React.FC<{ postData: PostData }> = ({ postData }) => {
   return (
     <div className="w-full max-w-[350px] aspect-[9/16] rounded-[2.5rem] md:rounded-[3rem] border-6 md:border-8 border-black shadow-2xl relative overflow-hidden bg-black">
-      <img src={postData.content.imageUrl} className="w-full h-full object-cover" alt="story" />
+      <img 
+        crossOrigin="anonymous" 
+        src={postData.content.imageUrl} 
+        className="w-full h-full object-cover" 
+        alt="story" 
+      />
       
       {/* HUD Overlay */}
       <div className="absolute inset-0 flex flex-col justify-between p-4 md:p-6 bg-gradient-to-b from-black/40 via-transparent to-black/60 pointer-events-none">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
              <div className="w-9 h-9 md:w-10 md:h-10 rounded-full border-2 border-yellow-400 overflow-hidden shrink-0">
-               <img src={postData.identity.avatarUrl} className="w-full h-full object-cover" alt="avatar" />
+               <img 
+                 crossOrigin="anonymous" 
+                 src={postData.identity.avatarUrl} 
+                 className="w-full h-full object-cover" 
+                 alt="avatar" 
+               />
              </div>
              <div className="min-w-0">
                <div className="text-white font-bold text-xs md:text-sm shadow-sm truncate">{postData.identity.name}</div>

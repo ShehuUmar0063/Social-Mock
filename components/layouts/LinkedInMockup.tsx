@@ -10,7 +10,12 @@ const LinkedInMockup: React.FC<{ postData: PostData }> = ({ postData }) => {
     <div className={`w-full max-w-[550px] ${isDark ? 'bg-[#1b1f23] text-white border-zinc-800' : 'bg-white text-slate-900 border-slate-200'} rounded-lg border shadow-2xl p-3 md:p-4`}>
       <div className="flex items-start justify-between mb-4">
         <div className="flex gap-2">
-          <img src={postData.identity.avatarUrl} className="w-10 h-10 md:w-12 md:h-12 rounded-sm object-cover" alt="avatar" />
+          <img 
+            crossOrigin="anonymous" 
+            src={postData.identity.avatarUrl} 
+            className="w-10 h-10 md:w-12 md:h-12 rounded-sm object-cover" 
+            alt="avatar" 
+          />
           <div className="flex flex-col min-w-0">
             <div className="flex items-center gap-1">
               <span className="font-bold text-sm md:text-base hover:text-blue-600 hover:underline cursor-pointer truncate">{postData.identity.name}</span>
@@ -36,7 +41,12 @@ const LinkedInMockup: React.FC<{ postData: PostData }> = ({ postData }) => {
 
       {postData.content.contentType === 'image' && (
         <div className="mb-4">
-          <img src={postData.content.imageUrl} className="w-full h-auto rounded" alt="post" />
+          <img 
+            crossOrigin="anonymous" 
+            src={postData.content.imageUrl} 
+            className="w-full h-auto rounded" 
+            alt="post" 
+          />
         </div>
       )}
 

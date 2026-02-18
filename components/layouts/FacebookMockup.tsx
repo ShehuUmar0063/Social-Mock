@@ -11,7 +11,12 @@ const FacebookMockup: React.FC<{ postData: PostData }> = ({ postData }) => {
       <div className="p-3">
         <div className="flex items-center justify-between mb-3">
           <div className="flex gap-2 min-w-0">
-            <img src={postData.identity.avatarUrl} className="w-10 h-10 rounded-full" alt="avatar" />
+            <img 
+              crossOrigin="anonymous" 
+              src={postData.identity.avatarUrl} 
+              className="w-10 h-10 rounded-full" 
+              alt="avatar" 
+            />
             <div className="min-w-0">
               <div className="font-bold text-[14px] md:text-[15px] truncate">{postData.identity.name}</div>
               <div className="flex items-center gap-1 text-[11px] md:text-[13px] text-slate-500">
@@ -31,7 +36,12 @@ const FacebookMockup: React.FC<{ postData: PostData }> = ({ postData }) => {
 
       {postData.content.contentType === 'image' && (
         <div className="mb-3">
-          <img src={postData.content.imageUrl} className="w-full h-auto" alt="post" />
+          <img 
+            crossOrigin="anonymous" 
+            src={postData.content.imageUrl} 
+            className="w-full h-auto" 
+            alt="post" 
+          />
         </div>
       )}
 

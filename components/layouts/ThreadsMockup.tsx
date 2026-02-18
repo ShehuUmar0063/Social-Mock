@@ -10,7 +10,12 @@ const ThreadsMockup: React.FC<{ postData: PostData }> = ({ postData }) => {
     <div className={`w-full max-w-[500px] ${isDark ? 'bg-black text-white' : 'bg-white text-black'} p-3 md:p-4 shadow-xl rounded-2xl border ${isDark ? 'border-zinc-900' : 'border-slate-100'}`}>
       <div className="flex gap-3">
         <div className="flex flex-col items-center shrink-0">
-          <img src={postData.identity.avatarUrl} className="w-9 h-9 md:w-10 md:h-10 rounded-full object-cover" alt="avatar" />
+          <img 
+            crossOrigin="anonymous" 
+            src={postData.identity.avatarUrl} 
+            className="w-9 h-9 md:w-10 md:h-10 rounded-full object-cover" 
+            alt="avatar" 
+          />
           <div className="w-[1px] md:w-[2px] flex-1 bg-zinc-800 my-2 rounded-full opacity-50"></div>
           <div className="flex -space-x-2">
             <div className="w-4 h-4 md:w-5 md:h-5 rounded-full bg-blue-500 border border-black"></div>
@@ -33,7 +38,12 @@ const ThreadsMockup: React.FC<{ postData: PostData }> = ({ postData }) => {
 
           {postData.content.contentType === 'image' && (
             <div className="rounded-lg border border-zinc-800 overflow-hidden mb-3">
-              <img src={postData.content.imageUrl} className="w-full h-auto" alt="post" />
+              <img 
+                crossOrigin="anonymous" 
+                src={postData.content.imageUrl} 
+                className="w-full h-auto" 
+                alt="post" 
+              />
             </div>
           )}
 

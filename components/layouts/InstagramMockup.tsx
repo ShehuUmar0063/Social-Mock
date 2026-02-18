@@ -12,7 +12,12 @@ const InstagramMockup: React.FC<{ postData: PostData }> = ({ postData }) => {
       <div className="flex items-center justify-between p-3">
         <div className="flex items-center gap-2">
           <div className="p-[2px] rounded-full bg-gradient-to-tr from-yellow-400 to-purple-600">
-             <img src={postData.identity.avatarUrl} className={`w-8 h-8 rounded-full border-2 ${isDark ? 'border-black' : 'border-white'} object-cover`} alt="avatar" />
+             <img 
+               crossOrigin="anonymous" 
+               src={postData.identity.avatarUrl} 
+               className={`w-8 h-8 rounded-full border-2 ${isDark ? 'border-black' : 'border-white'} object-cover`} 
+               alt="avatar" 
+             />
           </div>
           <span className="text-sm font-bold">{postData.identity.handle}</span>
         </div>
@@ -21,7 +26,12 @@ const InstagramMockup: React.FC<{ postData: PostData }> = ({ postData }) => {
 
       {/* Image Stage */}
       <div className="aspect-square bg-slate-100">
-        <img src={postData.content.imageUrl} className="w-full h-full object-cover" alt="content" />
+        <img 
+          crossOrigin="anonymous" 
+          src={postData.content.imageUrl} 
+          className="w-full h-full object-cover" 
+          alt="content" 
+        />
       </div>
 
       {/* Interactions */}

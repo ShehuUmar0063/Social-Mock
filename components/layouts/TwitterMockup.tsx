@@ -27,7 +27,12 @@ const TwitterMockup: React.FC<{ postData: PostData }> = ({ postData }) => {
         {/* Header */}
         <div className="flex items-start justify-between mb-3">
           <div className="flex gap-3">
-            <img src={postData.identity.avatarUrl} className="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover" alt="avatar" />
+            <img 
+              crossOrigin="anonymous" 
+              src={postData.identity.avatarUrl} 
+              className="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover" 
+              alt="avatar" 
+            />
             <div>
               <div className="flex items-center gap-1">
                 <span className="font-bold text-sm md:text-base">{postData.identity.name}</span>
@@ -46,7 +51,12 @@ const TwitterMockup: React.FC<{ postData: PostData }> = ({ postData }) => {
 
         {postData.content.contentType === 'image' && (
           <div className={`rounded-2xl border ${colors.border} overflow-hidden mb-3`}>
-            <img src={postData.content.imageUrl} className="w-full h-auto max-h-[500px] object-cover" alt="content" />
+            <img 
+              crossOrigin="anonymous" 
+              src={postData.content.imageUrl} 
+              className="w-full h-auto max-h-[500px] object-cover" 
+              alt="content" 
+            />
           </div>
         )}
 
@@ -103,7 +113,12 @@ const TwitterMockup: React.FC<{ postData: PostData }> = ({ postData }) => {
           {postData.content.comments.map((comment) => (
             <div key={comment.id} className="flex gap-3">
               <div className="flex flex-col items-center">
-                <img src={comment.avatarUrl} className="w-8 h-8 md:w-10 md:h-10 rounded-full object-cover" alt="avatar" />
+                <img 
+                  crossOrigin="anonymous" 
+                  src={comment.avatarUrl} 
+                  className="w-8 h-8 md:w-10 md:h-10 rounded-full object-cover" 
+                  alt="avatar" 
+                />
               </div>
               <div className="flex-1">
                 <div className="flex items-center justify-between">
