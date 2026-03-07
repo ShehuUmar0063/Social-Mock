@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { ThumbsUp, MessageSquare, Share2, MoreHorizontal, Globe } from 'lucide-react';
+import { ThumbsUp, MessageSquare, Share2, MoreHorizontal, Globe, User } from 'lucide-react';
 import { PostData } from '../../types';
 
 const FacebookMockup: React.FC<{ postData: PostData }> = ({ postData }) => {
@@ -11,12 +11,18 @@ const FacebookMockup: React.FC<{ postData: PostData }> = ({ postData }) => {
       <div className="p-3">
         <div className="flex items-center justify-between mb-3">
           <div className="flex gap-2 min-w-0">
-            <img 
-              crossOrigin="anonymous" 
-              src={postData.identity.avatarUrl} 
-              className="w-10 h-10 rounded-full" 
-              alt="avatar" 
-            />
+            {postData.identity.avatarUrl ? (
+              <img 
+                crossOrigin="anonymous" 
+                src={postData.identity.avatarUrl} 
+                className="w-10 h-10 rounded-full object-cover" 
+                alt="avatar" 
+              />
+            ) : (
+              <div className="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center">
+                <User size={20} className="text-slate-400" />
+              </div>
+            )}
             <div className="min-w-0">
               <div className="font-bold text-[14px] md:text-[15px] truncate">{postData.identity.name}</div>
               <div className="flex items-center gap-1 text-[11px] md:text-[13px] text-slate-500">
@@ -35,13 +41,17 @@ const FacebookMockup: React.FC<{ postData: PostData }> = ({ postData }) => {
       </div>
 
       {postData.content.contentType === 'image' && (
-        <div className="mb-3">
-          <img 
-            crossOrigin="anonymous" 
-            src={postData.content.imageUrl} 
-            className="w-full h-auto" 
-            alt="post" 
-          />
+        <div className="mb-3 bg-slate-100 dark:bg-slate-900 min-h-[200px] flex items-center justify-center">
+          {postData.content.imageUrl ? (
+            <img 
+              crossOrigin="anonymous" 
+              src={postData.content.imageUrl} 
+              className="w-full h-auto" 
+              alt="post" 
+            />
+          ) : (
+             <span className="text-slate-400 text-xs uppercase font-bold tracking-widest">No Image</span>
+          )}
         </div>
       )}
 

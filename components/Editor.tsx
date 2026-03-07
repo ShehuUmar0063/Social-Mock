@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { ArrowLeft, Download, User, Type, BarChart2, Hash, Moon, Sun, Monitor, Camera, Plus, Trash2, MessageSquare, Image as ImageIcon } from 'lucide-react';
+import { ArrowLeft, Download, User, Type, BarChart2, Hash, Moon, Sun, Monitor, Camera, Plus, Trash2, MessageSquare, Image as ImageIcon, Loader2 } from 'lucide-react';
 import { PostData, AppTheme, CommentData } from '../types';
 import { PLATFORMS } from '../constants';
 
@@ -9,26 +9,31 @@ interface EditorProps {
   onChange: (data: Partial<PostData>) => void;
   onBack: () => void;
   onExport: () => void;
+  isExporting?: boolean;
 }
 
-const Editor: React.FC<EditorProps> = ({ postData, onChange, onBack, onExport }) => {
+const Editor: React.FC<EditorProps> = ({ postData, onChange, onBack, onExport, isExporting }) => {
   const currentPlatform = PLATFORMS.find(p => p.id === postData.platform);
   const supported = currentPlatform?.supportedFields || [];
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>, type: 'avatar' | 'post' | 'comment', commentId?: string) => {
     const file = e.target.files?.[0];
     if (file) {
-      const url = URL.createObjectURL(file);
-      if (type === 'avatar') {
-        onChange({ identity: { ...postData.identity, avatarUrl: url } });
-      } else if (type === 'post') {
-        onChange({ content: { ...postData.content, imageUrl: url } });
-      } else if (type === 'comment' && commentId) {
-        const newComments = postData.content.comments.map(c => 
-          c.id === commentId ? { ...c, avatarUrl: url } : c
-        );
-        onChange({ content: { ...postData.content, comments: newComments } });
-      }
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64String = reader.result as string;
+        if (type === 'avatar') {
+          onChange({ identity: { ...postData.identity, avatarUrl: base64String } });
+        } else if (type === 'post') {
+          onChange({ content: { ...postData.content, imageUrl: base64String } });
+        } else if (type === 'comment' && commentId) {
+          const newComments = postData.content.comments.map(c => 
+            c.id === commentId ? { ...c, avatarUrl: base64String } : c
+          );
+          onChange({ content: { ...postData.content, comments: newComments } });
+        }
+      };
+      reader.readAsDataURL(file);
     }
   };
 
@@ -37,7 +42,7 @@ const Editor: React.FC<EditorProps> = ({ postData, onChange, onBack, onExport })
       id: Date.now().toString(),
       name: 'User Name',
       handle: 'username',
-      avatarUrl: '', // No default image
+      avatarUrl: '', 
       text: 'Sample comment text...',
       timestamp: '1m',
       likes: '0'
@@ -64,7 +69,6 @@ const Editor: React.FC<EditorProps> = ({ postData, onChange, onBack, onExport })
 
   return (
     <aside className="w-full md:w-[400px] h-full bg-slate-900 border-r border-white/10 flex flex-col z-20 overflow-y-auto custom-scrollbar">
-      {/* Sticky Header */}
       <div className="sticky top-0 bg-slate-900/90 backdrop-blur-md z-10 p-4 border-b border-white/10 flex items-center justify-between">
         <button onClick={onBack} className="p-2 hover:bg-white/5 rounded-lg transition-colors">
           <ArrowLeft size={20} />
@@ -72,15 +76,15 @@ const Editor: React.FC<EditorProps> = ({ postData, onChange, onBack, onExport })
         <span className="font-semibold">{currentPlatform?.name} Editor</span>
         <button 
           onClick={onExport}
-          className="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2 transition-all"
+          disabled={isExporting}
+          className="bg-blue-600 hover:bg-blue-500 disabled:bg-slate-700 disabled:cursor-not-allowed text-white px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2 transition-all shadow-lg shadow-blue-600/20"
         >
-          <Download size={16} />
-          Export
+          {isExporting ? <Loader2 size={16} className="animate-spin" /> : <Download size={16} />}
+          {isExporting ? 'Processing...' : 'Export PNG'}
         </button>
       </div>
 
       <div className="p-6 space-y-8 flex-1">
-        {/* Theme Toggle */}
         <section>
           <label className="text-xs font-bold text-slate-500 uppercase tracking-widest block mb-3">Theme</label>
           <div className="grid grid-cols-3 gap-2">
@@ -97,7 +101,6 @@ const Editor: React.FC<EditorProps> = ({ postData, onChange, onBack, onExport })
           </div>
         </section>
 
-        {/* Identity Section */}
         <section>
           <div className="flex items-center gap-2 mb-4">
             <User size={16} className="text-blue-400" />
@@ -105,7 +108,7 @@ const Editor: React.FC<EditorProps> = ({ postData, onChange, onBack, onExport })
           </div>
           <div className="space-y-4">
             <div className="flex items-center gap-4 p-4 bg-slate-800/50 rounded-xl border border-white/5">
-              <div className="relative group w-12 h-12">
+              <div className="relative group w-12 h-12 shrink-0">
                 {postData.identity.avatarUrl ? (
                   <img src={postData.identity.avatarUrl} className="w-full h-full rounded-full object-cover" alt="Avatar" />
                 ) : (
@@ -149,7 +152,6 @@ const Editor: React.FC<EditorProps> = ({ postData, onChange, onBack, onExport })
           </div>
         </section>
 
-        {/* Content Section */}
         <section>
           <div className="flex items-center gap-2 mb-4">
             <Type size={16} className="text-purple-400" />
@@ -181,7 +183,6 @@ const Editor: React.FC<EditorProps> = ({ postData, onChange, onBack, onExport })
           </div>
         </section>
 
-        {/* Comments Manager */}
         {supported.includes('comments') && (
           <section>
             <div className="flex items-center justify-between mb-4">
@@ -212,7 +213,7 @@ const Editor: React.FC<EditorProps> = ({ postData, onChange, onBack, onExport })
                 <div key={comment.id} className="p-4 bg-slate-800/50 rounded-xl border border-white/5 space-y-3">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <div className="relative group w-8 h-8">
+                      <div className="relative group w-8 h-8 shrink-0">
                         {comment.avatarUrl ? (
                           <img src={comment.avatarUrl} className="w-full h-full rounded-full object-cover" />
                         ) : (
@@ -261,7 +262,6 @@ const Editor: React.FC<EditorProps> = ({ postData, onChange, onBack, onExport })
           </section>
         )}
 
-        {/* Engagement Metrics */}
         <section>
           <div className="flex items-center gap-2 mb-4">
             <Hash size={16} className="text-amber-400" />
@@ -293,7 +293,6 @@ const Editor: React.FC<EditorProps> = ({ postData, onChange, onBack, onExport })
           </div>
         </section>
 
-        {/* Subtle Credit */}
         <div className="pt-12 pb-8 text-center border-t border-white/5">
           <p className="text-[10px] text-slate-600 font-bold uppercase tracking-[0.2em]">
             Mockup Engine by <span className="text-slate-400">Bn_Jibril</span>

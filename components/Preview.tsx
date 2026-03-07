@@ -34,17 +34,18 @@ const Preview: React.FC<PreviewProps> = ({ postData }) => {
   return (
     <main className="flex-1 bg-slate-900/50 flex flex-col items-center justify-center p-4 md:p-8 overflow-y-auto custom-scrollbar">
       {/* Container with auto-scaling for mobile */}
-      <div className="w-full h-full flex items-center justify-center">
+      <div className="w-full h-full flex items-center justify-center min-h-[500px]">
         <div 
-          id="preview-card-container" 
-          className="relative origin-center transition-transform duration-300 flex items-center justify-center p-4 md:p-10"
+          className="relative transition-transform duration-300 flex items-center justify-center p-2"
           style={{
-            // CSS Hack to ensure the content stays centered and fits within the parent bounds
             maxWidth: '100%',
             maxHeight: '100%'
           }}
         >
-          {MockupComponent && <MockupComponent postData={postData} />}
+          {/* We wrap the component specifically for html2canvas with inline-block to preserve dimensions */}
+          <div id="preview-card-container" className="inline-block relative">
+            {MockupComponent && <MockupComponent postData={postData} />}
+          </div>
         </div>
       </div>
       

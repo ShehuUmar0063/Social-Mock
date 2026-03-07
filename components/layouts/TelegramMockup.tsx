@@ -9,7 +9,7 @@ const TelegramMockup: React.FC<{ postData: PostData }> = ({ postData }) => {
   return (
     <div className={`w-full max-w-[450px] ${isDark ? 'bg-[#17212b]' : 'bg-[#73a0c5]'} p-3 md:p-4 shadow-2xl rounded-xl min-h-[400px] flex flex-col justify-end`}>
        <div className={`p-0 overflow-hidden ${isDark ? 'bg-[#182533] text-white' : 'bg-white text-black'} rounded-xl shadow-sm max-w-[90%] self-start relative group`}>
-         {postData.content.contentType === 'image' && (
+         {postData.content.contentType === 'image' && postData.content.imageUrl && (
            <img 
              crossOrigin="anonymous" 
              src={postData.content.imageUrl} 

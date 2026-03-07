@@ -29,7 +29,6 @@ const TwitterMockup: React.FC<{ postData: PostData }> = ({ postData }) => {
           <div className="flex gap-3">
             {postData.identity.avatarUrl ? (
               <img 
-                crossOrigin="anonymous" 
                 src={postData.identity.avatarUrl} 
                 className="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover" 
                 alt="avatar" 
@@ -59,7 +58,6 @@ const TwitterMockup: React.FC<{ postData: PostData }> = ({ postData }) => {
           <div className={`rounded-2xl border ${colors.border} overflow-hidden mb-3 bg-slate-100 dark:bg-slate-900 min-h-[200px] flex items-center justify-center`}>
             {postData.content.imageUrl ? (
               <img 
-                crossOrigin="anonymous" 
                 src={postData.content.imageUrl} 
                 className="w-full h-auto max-h-[500px] object-cover" 
                 alt="content" 
@@ -125,7 +123,6 @@ const TwitterMockup: React.FC<{ postData: PostData }> = ({ postData }) => {
               <div className="flex flex-col items-center">
                 {comment.avatarUrl ? (
                   <img 
-                    crossOrigin="anonymous" 
                     src={comment.avatarUrl} 
                     className="w-8 h-8 md:w-10 md:h-10 rounded-full object-cover" 
                     alt="avatar" 
